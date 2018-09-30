@@ -2,6 +2,8 @@
 
 ## Getting started
 
+__WARNING: vue-instant-menu is at the pre-alpha stage of development and may undergo significant changes.__
+
 1. Install the plugin:
 
 ```
