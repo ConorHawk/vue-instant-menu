@@ -1,9 +1,9 @@
 import Vue from 'vue';
-import InstantMenu from './InstantMenu.vue';
+import VueInstantMenu from './VueInstantMenu.vue';
 import MenuItem from './MenuItem.vue';
 
 const Components = {
-    InstantMenu,
+    VueInstantMenu,
     MenuItem
 };
 
