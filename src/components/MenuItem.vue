@@ -26,12 +26,12 @@ export default {
   inject: ['omniMenu'],
   methods: {
     openMenu () {
-      if (this.isParentLink && this.isMobile) {
+      if (this.isParentLink && !this.isMobile) {
         this.expanded = true
       }
     },
     closeMenu () {
-      if (this.isParentLink && this.isMobile) {
+      if (this.isParentLink && !this.isMobile) {
         this.expanded = false
       }
     },
