@@ -7,7 +7,7 @@ const Components = {
     MenuItem
 };
 
-Object.key(Components).forEach(name => {
+Object.keys(Components).forEach(name => {
     Vue.component(name, Components[name])
 });
 
