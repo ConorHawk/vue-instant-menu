@@ -113,7 +113,7 @@ export default {
       align-items:center;
       justify-content: center;
       svg {
-        width: 10px;
+        width: 8px;
       }
     }
     // Accessibly hidden css class

@@ -3,6 +3,7 @@
 
 __WARNING: vue-instant-menu is at the pre-alpha stage of development and may undergo significant changes.__
 
+[TOC]
 
 ## Getting started
 
@@ -44,13 +45,14 @@ __This plugin currently only supports one level of nested menu__
 
 ### Configuration
 
-`<vue-instant-menu></vue-instant-menu>`
+Properties for the component `vue-instant-menu`
 
 |Property|Type|Default|Description|
 |-------------|:-------------:|-----:|-----:|
 |mobileBreakpoint|integer|992|Controls the breakpoint at which the layout switches to mobile|
 
-`<menu-item></menu-item>`
+
+Properties for the component `menu-item`
 
 |Property|Type|Default|Description|
 |-------------|:-------------:|-----:|-----:|
