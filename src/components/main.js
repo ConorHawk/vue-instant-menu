@@ -12,3 +12,4 @@ Object.keys(Components).forEach(name => {
 });
 
 export default Components;
+export const VueInstantMenuEventBus = new Vue();

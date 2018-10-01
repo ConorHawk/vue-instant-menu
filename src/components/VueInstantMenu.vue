@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="vue-instant-menu">
   <button aria-label="open sidebar" class="mobile-open-button" v-if="isMobile" @click="expanded = !expanded">
     <slot name="mobile-open-button">
       <svg aria-hidden="true" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
@@ -17,17 +17,13 @@
 </template>
 
 <script>
+import {VueInstantMenuEventBus} from './main.js'
 export default {
   props: ['mobileBreakpoint'],
   data () {
     return {
       expanded: false,
       isMobile: false
-    }
-  },
-  provide () {
-    return {
-      omniMenu: this
     }
   },
   mounted () {
@@ -40,8 +36,9 @@ export default {
     // On mobile, will add a mobile class to the main menu
     calculateMobile () {
       var windowWidth = document.documentElement.clientWidth
-      if (windowWidth <= this.mobileBreakpoint) this.isMobile = true
-      else this.isMobile = false
+      var isMobile = (windowWidth <= this.mobileBreakpoint)
+      VueInstantMenuEventBus.$emit('mobile-change', isMobile)
+      this.isMobile = isMobile
     }
   },
   beforeDestroy () {
@@ -51,12 +48,13 @@ export default {
 </script>
 
 <style lang="scss">
+.vue-instant-menu {
+  color: #22292F;
   .main-menu {
     list-style: none;
     display: inline-flex;
     margin: 0;
     padding:0;
-    color: #22292F;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     // The top level item
@@ -119,9 +117,6 @@ export default {
       position: absolute;
       width: 1px;
     }
-    button {
-      color: inherit;
-    }
   }
 
   .main-menu.mobile {
@@ -156,6 +151,12 @@ export default {
     }
   }
 
+  button {
+    color: inherit;
+    background-color: transparent;
+    border: none;
+  }
+
   .mobile-open-button {
     svg {
       width: 20px;
@@ -178,4 +179,5 @@ export default {
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
+}
 </style>

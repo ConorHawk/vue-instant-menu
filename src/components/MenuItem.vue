@@ -16,14 +16,20 @@
 </template>
 
 <script>
+import {VueInstantMenuEventBus} from './main.js'
 export default {
   props: ['menuTitle', 'menuHref'],
   data () {
     return {
-      expanded: false
+      expanded: false,
+      isMobile: false
     }
   },
-  inject: ['omniMenu'],
+  mounted () {
+    VueInstantMenuEventBus.$on('mobile-change', (value) => {
+      this.isMobile = value
+    })
+  },
   methods: {
     openMenu () {
       if (this.isParentLink && !this.isMobile) {
@@ -42,9 +48,6 @@ export default {
     }
   },
   computed: {
-    isMobile () {
-      return this.omniMenu.isMobile
-    },
     isParentLink () {
       if (this.$slots.default) {
         return true
