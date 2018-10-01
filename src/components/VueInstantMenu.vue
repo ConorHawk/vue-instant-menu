@@ -55,6 +55,7 @@ export default {
 <style lang="scss">
 .vue-instant-menu {
   color: #22292F;
+  font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   .main-menu {
     list-style: none;
     display: inline-flex;
@@ -79,13 +80,17 @@ export default {
     }
     .sub-menu {
       background-color: #22292F;
-      padding:0px;
+      padding-top:0.5em;
+      padding-bottom:0.5em;
+      padding-left: 0px;
+      padding-right: 0px;
       margin:0px;
       list-style: none;
       position: absolute;
       min-width: 100%;
       max-width:200px;
       top: 100%;
+      border-radius: 0px 10px 10px 10px;
       li {
         padding: 0.5em 1em;
         a {
@@ -145,6 +150,7 @@ export default {
     .sub-menu {
       position: static;
       padding-top: 0.5em;
+      padding-bottom:0;
       min-width: auto;
       max-width: none;
       background-color: inherit;
@@ -179,10 +185,13 @@ export default {
   }
 
   .fade-enter-active, .fade-leave-active {
-    transition: opacity .2s;
+    transition: all .2s ease;
+    transform: translateY(0);
+    transform-origin: top;
   }
   .fade-enter, .fade-leave-to {
     opacity: 0;
+    transform: translateY(-5px)
   }
 }
 </style>
