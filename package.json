@@ -12,7 +12,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-lib-bundle": "vue-cli-service build --target lib --name vue-instant-menu ./src/components/main.js",
+    "bundle": "vue-cli-service build --target lib --name vue-instant-menu ./src/components/main.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

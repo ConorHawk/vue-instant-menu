@@ -18,7 +18,15 @@
 <script>
 import {VueInstantMenuEventBus} from './main.js'
 export default {
-  props: ['menuTitle', 'menuHref'],
+  props: {
+    menuTitle: {
+      type: String,
+      required: true
+    },
+    menuHref: {
+      type: String
+    }
+  },
   data () {
     return {
       expanded: false,

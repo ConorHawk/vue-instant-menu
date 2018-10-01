@@ -29,7 +29,7 @@ The components have been globally registered and are ready for use!
 Once the `vue-instant-menu` and `menu-item` components are installed globally, they can be used in templates in the following manner:
 
 ```html
-<vue-instant-menu :mobile-breakpoint="992">
+<vue-instant-menu>
     <menu-item menu-title="Home" menu-href="#"></menu-item>
     <menu-item menu-title="Features" menu-href="#">
         <menu-item menu-title="Elements" menu-href="#"></menu-item>
@@ -41,6 +41,38 @@ Once the `vue-instant-menu` and `menu-item` components are installed globally, t
 ```
 
 __This plugin currently only supports one level of nested menu__
+
+### Configuration
+
+`<vue-instant-menu></vue-instant-menu>`
+
+|Property|Type|Default|Description|
+|-------------|:-------------:|-----:|-----:|
+|mobileBreakpoint|integer|992|Controls the breakpoint at which the layout switches to mobile|
+
+`<menu-item></menu-item>`
+
+|Property|Type|Default|Description|
+|-------------|:-------------:|-----:|-----:|
+|menuTitle|string||Text content of the menu item|
+|menuHref|string||The URL that the menu item will link to|
+
+#### Custom mobile drawer buttons
+
+If you want to swap out the default buttons on mobile, use these named slots:
+
+```
+<vue-instant-menu>
+    <template slot="mobile-open-button">
+        😅
+    </template>
+    <template slot="mobile-close-button">
+        😱
+    </template>
+    <menu-item menu-title="Home" menu-href="#"></menu-item>
+    <menu-item menu-title="Portfolio" menu-href="#"></menu-item>
+</vue-instant-menu>
+```
 
 ### Styling
 

@@ -19,7 +19,12 @@
 <script>
 import {VueInstantMenuEventBus} from './main.js'
 export default {
-  props: ['mobileBreakpoint'],
+  props: {
+    mobileBreakpoint: {
+      type: Number,
+      default: 992
+    }
+  },
   data () {
     return {
       expanded: false,
