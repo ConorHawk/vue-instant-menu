@@ -48,6 +48,13 @@ Properties for the component `vue-instant-menu`
 |Property|Type|Default|Description|
 |-------------|:-------------:|-----:|-----:|
 |mobileBreakpoint|integer|992|Controls the breakpoint at which the layout switches to mobile|
+|fontFamily|String|inherit|General font|
+|color|String|#333|Desktop link color|
+|mobileBackgroundColor|String|#333|Mobile slideout panel color|
+|mobileColor|String|#fff|Mobile text color|
+|dropdownColor|String|#fff|Desktop dropdown text color|
+|dropdownBackgroundColor|String|#333|Desktop dropdown background color|
+|mobileOpenButtonFill|String|#333|Fill color of mobile hamburger menu|
 
 
 Properties for the component `menu-item`

@@ -7,7 +7,7 @@
     </button>
     <transition name="fade" mode="out-in">
       <template v-if="expanded || isMobile && isParentLink">
-        <ul class="sub-menu">
+        <ul :style="dropdownStyles" class="sub-menu">
           <slot></slot>
         </ul>
       </template>
@@ -30,12 +30,16 @@ export default {
   data () {
     return {
       expanded: false,
-      isMobile: false
+      isMobile: false,
+      styleObject: null
     }
   },
   mounted () {
     VueInstantMenuEventBus.$on('mobile-change', (value) => {
       this.isMobile = value
+    })
+    VueInstantMenuEventBus.$on('style-object', (value) => {
+      this.styleObject = value
     })
   },
   methods: {
@@ -61,6 +65,16 @@ export default {
         return true
       } else {
         return false
+      }
+    },
+    dropdownStyles () {
+      if (!this.isMobile && this.styleObject) {
+        return {
+          color: this.styleObject.dropdownColor,
+          backgroundColor: this.styleObject.dropdownBackgroundColor,
+        }
+      } else {
+        return {}
       }
     }
   }

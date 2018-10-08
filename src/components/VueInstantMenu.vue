@@ -1,11 +1,11 @@
 <template>
-<div class="vue-instant-menu">
-  <button aria-label="open sidebar" class="mobile-open-button" v-if="isMobile" @click="expanded = !expanded">
+<div :style="styleObject" class="vue-instant-menu">
+  <button :style="{color: mobileOpenButtonFill}" aria-label="open sidebar" class="mobile-open-button" v-if="isMobile" @click="expanded = !expanded">
     <slot name="mobile-open-button">
       <svg aria-hidden="true" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
     </slot>
   </button>
-  <ul class="main-menu" :class="{'active': expanded, 'mobile': isMobile}">
+  <ul :style="mobilePanel" class="main-menu" :class="{'active': expanded, 'mobile': isMobile}">
     <button aria-label="close sidebar" class="mobile-close-button" v-if="isMobile" @click="expanded = !expanded">
       <slot name="mobile-close-button">
         <svg aria-hidden="true" data-prefix="fal" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"></path></svg>
@@ -23,6 +23,34 @@ export default {
     mobileBreakpoint: {
       type: Number,
       default: 992
+    },
+    color: {
+      type: String,
+      default: '#22292F'
+    },
+    fontFamily: {
+      type: String,
+      default: 'inherit'
+    },
+    mobileBackgroundColor: {
+      type: String,
+      default: "#333"
+    },
+    mobileColor: {
+      type: String,
+      default: "#fff"
+    },
+    dropdownColor: {
+      type: String,
+      default: "#fff"
+    },
+    dropdownBackgroundColor: {
+      type: String,
+      default: "#333"
+    },
+    mobileOpenButtonFill: {
+      type: String,
+      default: "#333"
     }
   },
   data () {
@@ -36,6 +64,14 @@ export default {
       window.addEventListener('resize', this.calculateMobile)
       this.calculateMobile()
     })
+    VueInstantMenuEventBus.$emit('style-object', {
+        color: this.color,
+        fontFamily: this.fontFamily,
+        mobileBackgroundColor: this.mobileBackgroundColor,
+        mobileColor: this.mobileColor,
+        dropdownBackgroundColor: this.dropdownBackgroundColor,
+        dropdownColor: this.dropdownColor
+    })
   },
   methods: {
     // On mobile, will add a mobile class to the main menu
@@ -48,14 +84,37 @@ export default {
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.calculateMobile)
+  },
+  computed: {
+    styleObject () {
+      if (this.isMobile) {
+        return {
+          color: this.mobileColor,
+          fontFamily: this.fontFamily
+        }
+      } else {
+        return {
+          color: this.color,
+          fontFamily: this.fontFamily
+        }
+      }
+    },
+    mobilePanel () {
+      if (this.isMobile){
+        return {
+          backgroundColor: this.mobileBackgroundColor
+        }
+      } else {
+        return {}
+      }
+    }
   }
+  
 }
 </script>
 
 <style lang="scss">
 .vue-instant-menu {
-  color: #22292F;
-  font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   .main-menu {
     list-style: none;
     display: inline-flex;
@@ -90,11 +149,10 @@ export default {
       min-width: 100%;
       max-width:200px;
       top: 100%;
-      border-radius: 0px 10px 10px 10px;
+      border-radius: 0px 5px 5px 5px;
       li {
         padding: 0.5em 1em;
         a {
-          color:white;
           text-decoration: none;
           white-space: nowrap;
           &:focus, &:hover {
@@ -130,8 +188,6 @@ export default {
   }
 
   .main-menu.mobile {
-    color: white;
-    background-color: #22292F;
     flex-direction: column;
     position:fixed;
     right: 0;
