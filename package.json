@@ -1,7 +1,7 @@
 {
   "name": "vue-instant-menu",
   "main": "./dist/vue-instant-menu.common.js",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "files": [
     "dist/*",
     "src/*",
