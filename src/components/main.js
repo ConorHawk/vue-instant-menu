@@ -1,15 +1,13 @@
 import Vue from 'vue';
-import VueInstantMenu from './VueInstantMenu.vue';
+import VueInstantMenuComp from './VueInstantMenu.vue';
 import MenuItem from './MenuItem.vue';
 
-const Components = {
-    VueInstantMenu,
-    MenuItem
-};
+const VueInstantMenu = {
+    install(Vue) {
+      Vue.component('vue-instant-menu', VueInstantMenuComp)
+      Vue.component('menu-item', MenuItem)
+    }
+}
 
-Object.keys(Components).forEach(name => {
-    Vue.component(name, Components[name])
-});
-
-export default Components;
+export default VueInstantMenu;
 export const VueInstantMenuEventBus = new Vue();

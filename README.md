@@ -15,7 +15,9 @@ npm install --save vue-instant-menu
 
 ```javascript
 import Vue from 'vue'
-import 'vue-instant-menu'
+import VueInstantMenu from 'vue-instant-menu'
+
+Vue.use(VueInstantMenu)
 ```
 
 3. All done!
