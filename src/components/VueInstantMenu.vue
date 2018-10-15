@@ -147,7 +147,6 @@ export default {
       list-style: none;
       position: absolute;
       min-width: 100%;
-      max-width:200px;
       top: 100%;
       border-radius: 0px 5px 5px 5px;
       li {
