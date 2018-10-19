@@ -124,11 +124,11 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     // The top level item
     &>li {
-      margin: 0rem 0.5rem;
+      margin: 0rem 1.5rem;
+      padding: 0.5rem 0rem;
       position: relative;
       display:flex;
       align-items: center;
-      padding: 0.5em 1em;
       a {
         color: inherit;
         text-decoration: none;
@@ -149,6 +149,7 @@ export default {
       min-width: 100%;
       top: 100%;
       border-radius: 0px 5px 5px 5px;
+      left:0;
       li {
         padding: 0.5em 1em;
         a {
@@ -171,6 +172,7 @@ export default {
       justify-content: center;
       svg {
         width: 8px;
+        height: 8px;
       }
     }
     // Accessibly hidden css class
