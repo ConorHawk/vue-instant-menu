@@ -51,6 +51,10 @@ export default {
     mobileOpenButtonFill: {
       type: String,
       default: "#333"
+    },
+    activeColor: {
+      type: String,
+      default: "#3490dc"
     }
   },
   data () {
@@ -70,7 +74,8 @@ export default {
         mobileBackgroundColor: this.mobileBackgroundColor,
         mobileColor: this.mobileColor,
         dropdownBackgroundColor: this.dropdownBackgroundColor,
-        dropdownColor: this.dropdownColor
+        dropdownColor: this.dropdownColor,
+        activeColor: this.activeColor
     })
   },
   methods: {
