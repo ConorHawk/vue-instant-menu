@@ -57,6 +57,7 @@ Properties for the component `vue-instant-menu`
 |dropdownColor|String|#fff|Desktop dropdown text color|
 |dropdownBackgroundColor|String|#333|Desktop dropdown background color|
 |mobileOpenButtonFill|String|#333|Fill color of mobile hamburger menu|
+|activeColor|String|#3490dc|The color of the currently active menu item|
 
 
 Properties for the component `menu-item`
@@ -65,6 +66,7 @@ Properties for the component `menu-item`
 |-------------|:-------------:|-----:|-----:|
 |menuTitle|string||Text content of the menu item|
 |menuHref|string||The URL that the menu item will link to|
+|isActive|boolean||Sets whether the current menu item is active or not|
 
 #### Custom mobile drawer buttons
 
