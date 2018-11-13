@@ -68,6 +68,21 @@ Properties for the component `menu-item`
 |menuHref|string||The URL that the menu item will link to|
 |isActive|boolean||Sets whether the current menu item is active or not|
 
+#### Custom labels
+
+If you want to use something other than the default elements for you labels you can use the `custom` named slot on the `menu-item` component:
+
+```
+<vue-instant-menu>
+    <menu-item menu-title="Home" menu-href="#" :is-active="true"></menu-item>
+        <template slot="custom">
+            <!-- Your awesome svg in here! -->
+        </template>
+    <menu-item menu-title="Features" menu-href="#"></menu-item>
+    <menu-item :is-active="true" menu-title="Portfolio" menu-href="#"></menu-item>
+</vue-instant-menu>
+```
+
 #### Custom mobile drawer buttons
 
 If you want to swap out the default buttons on mobile, use these named slots:
