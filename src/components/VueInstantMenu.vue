@@ -200,11 +200,13 @@ export default {
     top: 0;
     height: 100%;
     width: 250px;
-    transform: translateX(250px);
+    // transform: translateX(250px);
+    left:100%;
     transition: 0.3s all ease;
     padding-top: 1em;
     &.active {
-      transform: translateX(0px);
+      // transform: translateX(0px);
+      left: calc(100% - 250px);
     }
     &>li {
       display: block;
