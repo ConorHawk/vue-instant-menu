@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import {VueInstantMenuEventBus} from './main.js'
+import { VueInstantMenuEventBus } from "./main.js";
 export default {
   props: {
     mobileBreakpoint: {
@@ -26,11 +26,11 @@ export default {
     },
     color: {
       type: String,
-      default: '#22292F'
+      default: "#22292F"
     },
     fontFamily: {
       type: String,
-      default: 'inherit'
+      default: "inherit"
     },
     mobileBackgroundColor: {
       type: String,
@@ -57,65 +57,64 @@ export default {
       default: "#3490dc"
     }
   },
-  data () {
+  data() {
     return {
       expanded: false,
       isMobile: false
-    }
+    };
   },
-  mounted () {
-    this.$nextTick(function () {
-      window.addEventListener('resize', this.calculateMobile)
-      this.calculateMobile()
-    })
-    VueInstantMenuEventBus.$emit('style-object', {
-        color: this.color,
-        fontFamily: this.fontFamily,
-        mobileBackgroundColor: this.mobileBackgroundColor,
-        mobileColor: this.mobileColor,
-        dropdownBackgroundColor: this.dropdownBackgroundColor,
-        dropdownColor: this.dropdownColor,
-        activeColor: this.activeColor
-    })
+  mounted() {
+    this.$nextTick(function() {
+      window.addEventListener("resize", this.calculateMobile);
+      this.calculateMobile();
+    });
+    VueInstantMenuEventBus.$emit("style-object", {
+      color: this.color,
+      fontFamily: this.fontFamily,
+      mobileBackgroundColor: this.mobileBackgroundColor,
+      mobileColor: this.mobileColor,
+      dropdownBackgroundColor: this.dropdownBackgroundColor,
+      dropdownColor: this.dropdownColor,
+      activeColor: this.activeColor
+    });
   },
   methods: {
     // On mobile, will add a mobile class to the main menu
-    calculateMobile () {
-      var windowWidth = document.documentElement.clientWidth
-      var isMobile = (windowWidth <= this.mobileBreakpoint)
-      VueInstantMenuEventBus.$emit('mobile-change', isMobile)
-      this.isMobile = isMobile
+    calculateMobile() {
+      var windowWidth = document.documentElement.clientWidth;
+      var isMobile = windowWidth <= this.mobileBreakpoint;
+      VueInstantMenuEventBus.$emit("mobile-change", isMobile);
+      this.isMobile = isMobile;
     }
   },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.calculateMobile)
+  beforeDestroy() {
+    window.removeEventListener("resize", this.calculateMobile);
   },
   computed: {
-    styleObject () {
+    styleObject() {
       if (this.isMobile) {
         return {
           color: this.mobileColor,
           fontFamily: this.fontFamily
-        }
+        };
       } else {
         return {
           color: this.color,
           fontFamily: this.fontFamily
-        }
+        };
       }
     },
-    mobilePanel () {
-      if (this.isMobile){
+    mobilePanel() {
+      if (this.isMobile) {
         return {
           backgroundColor: this.mobileBackgroundColor
-        }
+        };
       } else {
-        return {}
+        return {};
       }
     }
   }
-  
-}
+};
 </script>
 
 <style lang="scss">
@@ -124,43 +123,45 @@ export default {
     list-style: none;
     display: inline-flex;
     margin: 0;
-    padding:0;
+    padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     // The top level item
-    &>li {
+    & > li {
       margin: 0rem 1.5rem;
       padding: 0.5rem 0rem;
       position: relative;
-      display:flex;
+      display: flex;
       align-items: center;
       a {
         color: inherit;
         text-decoration: none;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           text-decoration: underline;
         }
       }
     }
     .sub-menu {
-      background-color: #22292F;
-      padding-top:0.5em;
-      padding-bottom:0.5em;
+      background-color: #22292f;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
       padding-left: 0px;
       padding-right: 0px;
-      margin:0px;
+      margin: 0px;
       list-style: none;
       position: absolute;
       min-width: 100%;
       top: 100%;
       border-radius: 0px 5px 5px 5px;
-      left:0;
+      left: 0;
       li {
         padding: 0.5em 1em;
         a {
           text-decoration: none;
           white-space: nowrap;
-          &:focus, &:hover {
+          &:focus,
+          &:hover {
             text-decoration: underline;
           }
         }
@@ -168,12 +169,12 @@ export default {
     }
     // The small down arrow next to dropdowns
     .menu-item-toggle {
-      margin-left:5px;
-      padding:0px;
-      background-color:transparent;
-      border:none;
-      display:inline-flex;
-      align-items:center;
+      margin-left: 5px;
+      padding: 0px;
+      background-color: transparent;
+      border: none;
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
       svg {
         width: 8px;
@@ -191,36 +192,49 @@ export default {
       position: absolute;
       width: 1px;
     }
+    .sub-menu {
+      display: none;
+    }
+    .parent-link {
+      &:focus-within,
+      &:hover,
+      &:focus {
+        .sub-menu {
+          display: block;
+        }
+      }
+    }
   }
 
   .main-menu.mobile {
     flex-direction: column;
-    position:fixed;
+    position: fixed;
     right: 0;
     top: 0;
     height: 100%;
     width: 250px;
     // transform: translateX(250px);
-    left:100%;
+    left: 100%;
     transition: 0.3s all ease;
     padding-top: 1em;
     &.active {
       // transform: translateX(0px);
       left: calc(100% - 250px);
     }
-    &>li {
+    & > li {
       display: block;
     }
     .sub-menu {
+      display: block;
       position: static;
       padding-top: 0.5em;
-      padding-bottom:0;
+      padding-bottom: 0;
       min-width: auto;
       max-width: none;
       background-color: inherit;
       li {
         a {
-          color:inherit;
+          color: inherit;
         }
       }
     }
@@ -239,23 +253,25 @@ export default {
   }
   .mobile-close-button {
     position: absolute;
-    right:0;
-    top:0;
-    padding:0.5em;
-    z-index:2;
+    right: 0;
+    top: 0;
+    padding: 0.5em;
+    z-index: 2;
     svg {
       width: 20px;
     }
   }
 
-  .fade-enter-active, .fade-leave-active {
-    transition: all .2s ease;
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.2s ease;
     transform: translateY(0);
     transform-origin: top;
   }
-  .fade-enter, .fade-leave-to {
+  .fade-enter,
+  .fade-leave-to {
     opacity: 0;
-    transform: translateY(-5px)
+    transform: translateY(-5px);
   }
 }
 </style>

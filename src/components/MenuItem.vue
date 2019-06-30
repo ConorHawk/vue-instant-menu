@@ -1,5 +1,5 @@
 <template>
-  <li @mouseover="openMenu()" @mouseout="closeMenu()" :class="{'parent-link': isParentLink}">
+  <li :class="{'parent-link': isParentLink}">
     <a :style="activeStyles" :href="menuHref" :aria-haspopup="isParentLink" :aria-expanded="expanded">
       <slot name="custom">
         {{menuTitle}}
@@ -9,18 +9,14 @@
       <svg aria-hidden="true" data-prefix="fas" data-icon="caret-down" class="svg-inline--fa fa-caret-down fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
       <span class="visuallyhidden">show submenu for “' + activatingA.text + '”</span>
     </button>
-    <transition name="fade" mode="out-in">
-      <template v-if="expanded || isMobile && isParentLink">
-        <ul :style="dropdownStyles" class="sub-menu">
-          <slot></slot>
-        </ul>
-      </template>
-    </transition>
+      <ul v-if="isParentLink" :style="dropdownStyles" class="sub-menu">
+        <slot></slot>
+      </ul>
   </li>
 </template>
 
 <script>
-import {VueInstantMenuEventBus} from './main.js'
+import { VueInstantMenuEventBus } from "./main.js";
 export default {
   props: {
     menuTitle: {
@@ -35,65 +31,48 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       expanded: false,
       isMobile: false,
       styleObject: null
-    }
+    };
   },
-  mounted () {
-    VueInstantMenuEventBus.$on('mobile-change', (value) => {
-      this.isMobile = value
-    })
-    VueInstantMenuEventBus.$on('style-object', (value) => {
-      this.styleObject = value
-    })
-  },
-  methods: {
-    openMenu () {
-      if (this.isParentLink && !this.isMobile) {
-        this.expanded = true
-      }
-    },
-    closeMenu () {
-      if (this.isParentLink && !this.isMobile) {
-        this.expanded = false
-      }
-    },
-    toggleMenu () {
-      if (this.isParentLink) {
-        this.expanded = !this.expanded
-      }
-    }
+  mounted() {
+    VueInstantMenuEventBus.$on("mobile-change", value => {
+      this.isMobile = value;
+    });
+    VueInstantMenuEventBus.$on("style-object", value => {
+      this.styleObject = value;
+    });
   },
   computed: {
-    isParentLink () {
+    isParentLink() {
       if (this.$slots.default) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     },
-    dropdownStyles () {
+    dropdownStyles() {
       if (!this.isMobile && this.styleObject) {
         return {
           color: this.styleObject.dropdownColor,
-          backgroundColor: this.styleObject.dropdownBackgroundColor,
-        }
+          backgroundColor: this.styleObject.dropdownBackgroundColor
+        };
       } else {
-        return {}
+        return {};
       }
     },
-    activeStyles () {
+    activeStyles() {
       if (this.isActive && this.styleObject) {
         return {
-          color: this.styleObject.activeColor,
-        }
+          color: this.styleObject.activeColor
+        };
       } else {
-        return {}
+        return {};
       }
     }
   }
-}
+};
 </script>
