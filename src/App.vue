@@ -10,16 +10,15 @@
                 <menu-item menu-title="Web Design + Development" menu-href="#"></menu-item>
                 <menu-item menu-title="Icons" menu-href="#"></menu-item>
             </menu-item>
-            <menu-item :is-active="true" menu-title="Portfolio" menu-href="#"></menu-item>
+            <menu-item tag="div" :is-active="true" menu-title="Portfolio" menu-href="#"></menu-item>
         </vue-instant-menu>
   </div>
 </template>
  <script>
- export default {
-  name: 'app',
-  components: {
-  }
-}
+export default {
+  name: "app",
+  components: {}
+};
 </script>
  <style>
 #app {
