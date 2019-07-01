@@ -1,7 +1,7 @@
 {
   "name": "vue-instant-menu",
   "main": "./dist/vue-instant-menu.common.js",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "author": "Conor Hawkins",
   "bugs": {
     "url": "https://github.com/ConorHawk/vue-instant-menu/issues"
