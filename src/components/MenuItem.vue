@@ -21,7 +21,7 @@ export default {
   props: {
     menuTitle: {
       type: String,
-      required: true
+      default: ''
     },
     menuHref: {
       type: String
