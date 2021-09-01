@@ -1,19 +1,64 @@
 <template>
-<div :style="styleObject" class="vue-instant-menu">
-  <button :style="{color: mobileOpenButtonFill}" aria-label="open sidebar" class="mobile-open-button" v-if="isMobile" @click="expanded = !expanded">
-    <slot name="mobile-open-button">
-      <svg aria-hidden="true" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
-    </slot>
-  </button>
-  <ul :style="mobilePanel" class="main-menu" :class="{'active': expanded, 'mobile': isMobile}">
-    <button aria-label="close sidebar" class="mobile-close-button" v-if="isMobile" @click="expanded = !expanded">
-      <slot name="mobile-close-button">
-        <svg aria-hidden="true" data-prefix="fal" data-icon="times" class="svg-inline--fa fa-times fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"></path></svg>
+  <div
+    :style="styleObject"
+    class="vue-instant-menu vim-container"
+    :class="[isMobile ? 'vim-is-mobile' : '']"
+  >
+    <button
+      :style="{ color: mobileOpenButtonFill }"
+      aria-label="open sidebar"
+      class="mobile-open-button vim-mobile-open-button"
+      v-if="isMobile"
+      @click="expanded = !expanded"
+    >
+      <slot name="mobile-open-button">
+        <svg
+          aria-hidden="true"
+          data-prefix="fas"
+          data-icon="bars"
+          class="svg-inline--fa fa-bars fa-w-14 vim-hamburger-icon"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          fill="currentColor"
+        >
+          <path
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+          ></path>
+        </svg>
       </slot>
     </button>
-    <slot></slot>
-  </ul>
-</div>
+    <ul
+      :style="mobilePanel"
+      class="main-menu vim-main-menu"
+      :class="{ active: expanded, mobile: isMobile }"
+    >
+      <button
+        aria-label="close sidebar"
+        class="mobile-close-button vim-mobile-close-button"
+        v-if="isMobile"
+        @click="expanded = !expanded"
+      >
+        <slot name="mobile-close-button">
+          <svg
+            aria-hidden="true"
+            data-prefix="fal"
+            data-icon="times"
+            class="svg-inline--fa fa-times fa-w-10 vim-close-icon"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <path
+              fill="currentColor"
+              d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"
+            ></path>
+          </svg>
+        </slot>
+      </button>
+      <slot></slot>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -22,49 +67,49 @@ export default {
   props: {
     mobileBreakpoint: {
       type: Number,
-      default: 992
+      default: 992,
     },
     color: {
       type: String,
-      default: "#22292F"
+      default: "#22292F",
     },
     fontFamily: {
       type: String,
-      default: "inherit"
+      default: "inherit",
     },
     mobileBackgroundColor: {
       type: String,
-      default: "#333"
+      default: "#333",
     },
     mobileColor: {
       type: String,
-      default: "#fff"
+      default: "#fff",
     },
     dropdownColor: {
       type: String,
-      default: "#fff"
+      default: "#fff",
     },
     dropdownBackgroundColor: {
       type: String,
-      default: "#333"
+      default: "#333",
     },
     mobileOpenButtonFill: {
       type: String,
-      default: "#333"
+      default: "#333",
     },
     activeColor: {
       type: String,
-      default: "#3490dc"
-    }
+      default: "#3490dc",
+    },
   },
   data() {
     return {
       expanded: false,
-      isMobile: false
+      isMobile: false,
     };
   },
   mounted() {
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       window.addEventListener("resize", this.calculateMobile);
       this.calculateMobile();
     });
@@ -75,7 +120,7 @@ export default {
       mobileColor: this.mobileColor,
       dropdownBackgroundColor: this.dropdownBackgroundColor,
       dropdownColor: this.dropdownColor,
-      activeColor: this.activeColor
+      activeColor: this.activeColor,
     });
   },
   methods: {
@@ -85,7 +130,7 @@ export default {
       var isMobile = windowWidth <= this.mobileBreakpoint;
       VueInstantMenuEventBus.$emit("mobile-change", isMobile);
       this.isMobile = isMobile;
-    }
+    },
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.calculateMobile);
@@ -95,25 +140,25 @@ export default {
       if (this.isMobile) {
         return {
           color: this.mobileColor,
-          fontFamily: this.fontFamily
+          fontFamily: this.fontFamily,
         };
       } else {
         return {
           color: this.color,
-          fontFamily: this.fontFamily
+          fontFamily: this.fontFamily,
         };
       }
     },
     mobilePanel() {
       if (this.isMobile) {
         return {
-          backgroundColor: this.mobileBackgroundColor
+          backgroundColor: this.mobileBackgroundColor,
         };
       } else {
         return {};
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
